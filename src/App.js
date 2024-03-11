@@ -31,19 +31,18 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/garden-set" element={<GardenSet />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/product/:productID" element={<Cart />} />
-        <Route path="/lastshop" element={<LastShop />} />
-        <Route path="/secondcart" element={<SecondCart />} />
-        {/* <Route element={<ProtectedRoute />}>
+        
+        
+        <Route element={<ProtectedRoute />}>
           
           <Route path="about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/garden-set" element={<GardenSet />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
+         
+          <Route path="/product/:productID" element={<Cart />} />
           <Route path="/lastshop" element={<LastShop />} />
           <Route path="/secondcart" element={<SecondCart />} />
-        </Route> */}
+        </Route>
 
       </Routes>
     </Router>

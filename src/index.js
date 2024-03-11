@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import store from './redux/configurestore'
+
 import { Provider } from 'react-redux'
-//import { store, persistor } from './redux/configurestore';
-// import { persistor } from './redux/configurestore';
-// import { PersistGate } from 'redux-persist/integration/react';
+
 import { persistor, store } from './redux/configurestore';
 import { PersistGate } from 'redux-persist/integration/react';
+import { QueryClient, QueryClientProvider } from "react-query";
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

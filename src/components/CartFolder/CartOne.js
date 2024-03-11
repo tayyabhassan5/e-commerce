@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/count'
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -9,19 +10,53 @@ import heart1 from '../../assets/Images/CartImages/Facebook.png';
 import heart2 from '../../assets/Images/CartImages/Instagram.png';
 import heart3 from '../../assets/Images/CartImages/Twitter.png';
 import heart4 from '../../assets/Images/CartImages/LinkedIn.png';
+import { useQuery } from "react-query";
 
+
+const fetchProducts = async (productID) => {
+    const response = await axios.get(`http://localhost:3000/api/products/getProducts1?productID=${productID}`);
+    return response.data;
+}
 
 export const CartOne = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { productID } = useParams();
+    console.log(productID);
 
-    const cartItems = useSelector(state => state.cart.items);
+    const {       
+        data: products,
+        error,
+        isLoading,
+    } = useQuery(["specificProductData", productID], ()=>fetchProducts(productID));
+
+    //const cartItems = useSelector(state => state.cart.items);
     // console.log("Hi, I am before redux");
     // console.log(cartItems);
     // console.log(cartItems[0].productHeading);
     // console.log(cartItems[0].productFilename);
 
     // console.log("Hi, I am after redux");
+    const handleAddToCart = (product) => {
+
+        dispatch(addToCart({
+            productID: product._id,
+            productHeading: product.productHeading,
+            productDesc: product.productDesc,
+            productPrice: product.productPrice,
+            productQuantity: quantity,
+            // productReview:product.productReview,
+            // productDetail:product.productDetail,
+            productPrice: product.productPrice,
+            productFilename: product.filename[0],
+
+        }));
+        // console.log(product.filename[0])
+        // console.log(product.productDesc)
+        // console.log(product);
+
+        //navigate('/cart', { state: { productID: product._id, productHeading: product.productHeading } });
+    }
 
     const location = useLocation();
 
@@ -42,21 +77,21 @@ export const CartOne = () => {
         }
     };
 
-    const [products, setProducts] = useState();
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3000/api/products/getProducts1?productID=${productID}`);
-                setProducts(response.data);
-                //console.log(products.productHeading);
-            } catch (error) {
-                console.error('Error the data os product:', error);
-            }
-        };
+    // const [products, setProducts] = useState();
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:3000/api/products/getProducts1?productID=${productID}`);
+    //             setProducts(response.data);
+    //             //console.log(products.productHeading);
+    //         } catch (error) {
+    //             console.error('Error the data os product:', error);
+    //         }
+    //     };
 
-        fetchProducts();
+    //     fetchProducts();
 
-    }, [productID]);
+    // }, [productID]);
 
     const [showDetails, setShowDetails] = useState(false);
     const [showDimensions, setShowDimensions] = useState(false);
@@ -126,6 +161,9 @@ export const CartOne = () => {
         },
     ];
 
+    if (isLoading) return <div>Fetching posts...</div>;
+    if (error) return <div>An error occurred: {error.message}</div>;
+
     return (
         <div>
             <div className="sm:mx-20 flex items-center space-x-2 mb-10 ">
@@ -189,52 +227,16 @@ export const CartOne = () => {
                             </button>
                         </div>
                         <button className=" sm:ml-4 bg-black w-full text-white"
-                            onClick={async () => {
-
-                                try {
-                                    const response = await axios.post('http://localhost:3000/api/carts', null, {
-                                        params: {
-                                            productHeading: products?.productHeading,
-                                            quantity: quantity,
-                                        },
-                                    });
-
-                                    if (response.status === 200) {
-                                        console.log('Purchase successful:', response.data);
-                                    } else {
-                                        console.error('Failed to make the purchase:', response.statusText);
-                                    }
-
-                                    navigate('/secondcart');
-                                } catch (error) {
-                                    console.error('Error making purchase:', error);
-                                }
-                            }}>
+                            onClick={() => handleAddToCart(products)}
+                        >
                             Add To Cart</button>
                     </div>
 
                     <div className="mt-2 flex">
                         <button className="border border-2px-solid flex-grow"
-                            onClick={async () => {
-
-                                try {
-                                    const response = await axios.post('http://localhost:3000/api/carts', null, {
-                                        params: {
-                                            productHeading: products?.productHeading,
-                                            quantity: quantity,
-                                        },
-                                    });
-
-                                    if (response.status === 200) {
-                                        console.log('Purchase successful:', response.data);
-                                    } else {
-                                        console.error('Failed to make the purchase:', response.statusText);
-                                    }
-
-                                    navigate('/secondcart');
-                                } catch (error) {
-                                    console.error('Error making purchase:', error);
-                                }
+                            onClick={() => {
+                                handleAddToCart(products)
+                                navigate('/secondcart')
                             }}>
                             Buy Now
                         </button>

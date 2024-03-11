@@ -3,12 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/count'
 import axios from 'axios';
+import { useQuery } from "react-query";
+
+const fetchProducts=async()=>{
+    const response =await axios.get('http://localhost:3000/api/products/getProducts');
+    return response.data;
+}
 
 export const ShopOne = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const quantity=1;
+
+    
 
     const handleAddToCart = (product) => {
 
@@ -17,8 +25,6 @@ export const ShopOne = () => {
             productHeading: product.productHeading,
             productDesc: product.productDesc,
             productPrice: product.productPrice,
-            // productReview:product.productReview,
-            // productDetail:product.productDetail,
             productPrice: product.productPrice,
             productFilename: product.filename[0],
 
@@ -52,30 +58,17 @@ export const ShopOne = () => {
 
         navigate(`/product/${product._id}`, { state: { productID: product._id, productHeading: product.productHeading } });
     }
+    
+    const {
+        data: products,
+        error,
+        isLoading,
+      } = useQuery("productsData", fetchProducts);
 
-    const [products, setProducts] = useState([]);
 
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/products/getProducts');
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-
-        fetchProducts();
-
-        products.forEach((product) => {
-            // console.log("In use Effect");
-            // console.log(products);
-            // console.log('Product Heading:', product.productHeading);
-            // console.log('Product Description:', product.productDesc);
-        });
-
-    }, []);
+      if (isLoading) return <div>Fetching posts...</div>;
+      if (error) return <div>An error occurred: {error.message}</div>;
+   
 
     return (
         <div className="lg:mx-20 grid lg:grid-cols-3">
