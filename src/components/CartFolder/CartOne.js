@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import heart from '../../assets/Images/CartImages/Heart.png';
 import heart1 from '../../assets/Images/CartImages/Facebook.png';
@@ -11,12 +13,22 @@ import heart4 from '../../assets/Images/CartImages/LinkedIn.png';
 
 export const CartOne = () => {
     const navigate = useNavigate();
+    const { productID } = useParams();
+
+    const cartItems = useSelector(state => state.cart.items);
+    // console.log("Hi, I am before redux");
+    // console.log(cartItems);
+    // console.log(cartItems[0].productHeading);
+    // console.log(cartItems[0].productFilename);
+
+    // console.log("Hi, I am after redux");
+
     const location = useLocation();
 
     // Accessing
-    const { productID, productHeading } = location.state || {};
-    console.log(productID);
-    console.log(productHeading);
+    //const { productID, productHeading } = location.state || {};
+    //console.log(productID);
+    //console.log(productHeading);
 
     const [quantity, setQuantity] = useState(1);
 
@@ -43,6 +55,7 @@ export const CartOne = () => {
         };
 
         fetchProducts();
+
     }, [productID]);
 
     const [showDetails, setShowDetails] = useState(false);

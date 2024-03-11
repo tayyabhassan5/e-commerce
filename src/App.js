@@ -26,8 +26,16 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/signuppage" element={<SignUp />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="home" element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/garden-set" element={<GardenSet />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:productID" element={<Cart />} />
+        <Route path="/lastshop" element={<LastShop />} />
+        <Route path="/secondcart" element={<SecondCart />} />
+        {/* <Route element={<ProtectedRoute />}>
+          
           <Route path="about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/garden-set" element={<GardenSet />} />
@@ -35,7 +43,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/lastshop" element={<LastShop />} />
           <Route path="/secondcart" element={<SecondCart />} />
-        </Route>
+        </Route> */}
 
       </Routes>
     </Router>

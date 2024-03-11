@@ -1,63 +1,87 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../redux/count'
 import axios from 'axios';
+import { persistor, store } from '../../redux/configurestore';
 import FImage1 from "../../assets/Images/HomePageImges/dinnerplate.png";
 import FImage2 from "../../assets/Images/HomePageImges/Remove.png";
 import FImage3 from "../../assets/Images/HomePageImges/Close.png";
 
+
 export const SecondLastShoppingOne = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     // const location = useLocation();
     // const { productHeading, quantity, price } = location.state || {};
     // console.log(productHeading);
     // console.log(quantity);
     // console.log(price);
+    const cartItems = useSelector(state => state.cart.items);
+    console.log("Hi, I am before redux");
+    console.log(cartItems);
+    
+    console.log(cartItems[0].productHeading);
+    console.log(cartItems[0].productFilename);
 
-    const [dataFromBackend, setDataFromBackend] = useState([]);
+    console.log("Hi, I am after redux");
 
-    useEffect(() => {
-        axios.get('http://localhost:3000/api/carts/Handler')
-            .then((response) => {
-                // Checking response structu
-                if (response.data && Array.isArray(response.data.cartDetails)) {
-                    console.log(response.data.cartDetails);
-                    setDataFromBackend(response.data.cartDetails);
-                } else {
-                    console.error('Invalid response structure. Expected an object with a cartDetails property containing an array.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+    //const [dataFromBackend, setDataFromBackend] = useState([]);
+
+    // useEffect(() => {
+    //     axios.get('http://localhost:3000/api/carts/Handler')
+    //         .then((response) => {
+    //             // Checking response structu
+    //             if (response.data && Array.isArray(response.data.cartDetails)) {
+    //                 console.log(response.data.cartDetails);
+    //                 setDataFromBackend(response.data.cartDetails);
+    //             } else {
+    //                 console.error('Invalid response structure. Expected an object with a cartDetails property containing an array.');
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error fetching data:', error);
+    //         });
+    // }, []);
 
     const calculateSubtotal = (item) => {
-        return item.price * item.quantity;
+        //console.log(dataFromBackend);
+        return item.productPrice * item.productQuantity;
+        
     };
 
-    const totalSubtotal = dataFromBackend.reduce((acc, item) => acc + calculateSubtotal(item), 0);
+    const totalSubtotal = cartItems.reduce((acc, item) => acc + calculateSubtotal(item), 0);
 
-    const handleDeleteItem = async (item) => {
-        try {
-            console.log(item.productHeading);
-            const response = await axios.post('http://localhost:3000/api/carts/deleteitem', null, {
-                params: {
-                    productHeading: item.productHeading,
-                },
-            });
+    const handleDeleteItem = (item) => {
+       console.log('BeforeDeletion',cartItems)
+        dispatch(removeFromCart({ productID: item.productID }));
+        console.log('After deletion:', cartItems);
+        
+      };
 
-            if (response.status === 200) {
-                console.log('Delete successful:', response.data);
+    // const handleDeleteItem = async (item) => {
+    //     dispatch(deleteItem({ productHeading: item.productHeading }));
+    //     try {
+    //         console.log(item.productHeading);
+    //         const response = await axios.post('http://localhost:3000/api/carts/deleteitem', null, {
+    //             params: {
+    //                 productHeading: item.productHeading,
+    //             },
+    //         });
+
+    //         if (response.status === 200) {
+    //             console.log('Delete successful:', response.data);
             
-                setDataFromBackend((prevData) => prevData.filter((prevItem) => prevItem.productHeading !== item.productHeading));
-            } else {
-                console.error('Failed to delete:', response.statusText);
-            }
+    //             setDataFromBackend((prevData) => prevData.filter((prevItem) => prevItem.productHeading !== item.productHeading));
+    //         } else {
+    //             console.error('Failed to delete:', response.statusText);
+    //         }
 
-        } catch (error) {
-            console.error('Error deleting purchase:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error deleting purchase:', error);
+    //     }
+    // };
 
     return (
         <div className="sm:mx-20">
@@ -92,7 +116,7 @@ export const SecondLastShoppingOne = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataFromBackend.map((item) => (
+                        {cartItems.map((item) => (
                             <tr key={item.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td className="px-6 cursor-pointer py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <img src={FImage3} alt="Close" 
@@ -100,11 +124,11 @@ export const SecondLastShoppingOne = () => {
                                         
                                 </td>
                                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img className='w-auto h-20' src={`http://localhost:3000/uploads/${item.filename[0]}`} alt={item.productHeading} />
+                                    <img className='w-auto h-20' src={`http://localhost:3000/uploads/${item.productFilename}`} alt={item.productHeading} />
                                 </td>
                                 <td className="px-6 py-4">{item.productHeading}</td>
-                                <td className="px-6 py-4">{item.price}</td>
-                                <td className="px-6 py-4">{item.quantity}</td>
+                                <td className="px-6 py-4">{item.productPrice}</td>
+                                <td className="px-6 py-4">{item.productQuantity}</td>
                                 <td className="px-6 py-4">{calculateSubtotal(item)}</td>
                             </tr>
                         ))}
@@ -130,7 +154,7 @@ export const SecondLastShoppingOne = () => {
                         <div className="sm:p-8 ">
                             <button className="border p-2 1px solid grid col-span-2 text-white border-white" onClick={() => navigate('/lastshop', {
                                 state: {
-                                    cartItems: dataFromBackend.map(item => ({
+                                    cartItems: cartItems.map(item => ({
                                       productHeading: item.productHeading,
                                       subtotal: calculateSubtotal(item),
                                     })),
