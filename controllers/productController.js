@@ -48,7 +48,7 @@ const productPosting = asyncHandler(async (req, res) => {
 
 const productGetting=asyncHandler(async(req,res)=>{
     try {
-        const allProducts=await Product.find().select('productHeading productDesc filename productPrice productColor');
+        const allProducts=await Product.find().select('productHeading productDesc filename productPrice productColor productDetail');
         res.status(200).json(allProducts);
     }catch(error){
         console.error(error);
