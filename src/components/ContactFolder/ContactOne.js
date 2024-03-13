@@ -9,7 +9,7 @@ import Image5 from '../../assets/Images/ContactPage/YouTube.png'
 
 
 
- export const ContactOne = () => {
+ const ContactOne = () => {
   const heading1 = "CONTACT US";
   const heading2 = "FOLLOW US ON SOCIAL MEDIA";
   const items=[
@@ -62,3 +62,5 @@ import Image5 from '../../assets/Images/ContactPage/YouTube.png'
      
   );
 }
+
+export default ContactOne

@@ -1,7 +1,7 @@
 import FImage1 from "../../assets/Images/HomePageImges/blogpageplate.png"
 import {useNavigate} from "react-router-dom"
 
-export const OurBlog = () => {
+const OurBlog = () => {
     const navigate=useNavigate();
     const heading1 = "TABLEWARE";
     const heading2 = "The secret to a Kitechen Room";
@@ -40,3 +40,4 @@ export const OurBlog = () => {
         </div>
     );
 };
+export default OurBlog

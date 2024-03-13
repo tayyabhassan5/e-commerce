@@ -1,4 +1,4 @@
-export const SignUpPage = () => {
+const SignUpPage = () => {
     return (
         <div className="flex flex-col items-center justify-center p-8">
             <div className="p-6 font-bold">Sign Up For Emails</div>
@@ -19,3 +19,4 @@ export const SignUpPage = () => {
 
     )
 }
+export default SignUpPage

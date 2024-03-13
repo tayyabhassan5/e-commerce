@@ -1,6 +1,6 @@
 import react from 'react'
 
-export const ContactTwo = () => {
+const ContactTwo = () => {
     const heading1 = "GET IN TOUCH WITH US";
     const heading2 = "Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam."
     return (
@@ -10,3 +10,5 @@ export const ContactTwo = () => {
         </div>
     )
 }
+
+export default ContactTwo

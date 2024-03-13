@@ -4,7 +4,7 @@ import FImage2 from "../../assets/Images/CheckOutImages/paypal.png"
 import {useLocation} from 'react-router-dom'
 
 
-export const ShoppingOne = () => {
+const ShoppingOne = () => {
     const location = useLocation();
     const { cartItems,totalSubtotal} = location.state || {};
     console.log(cartItems);
@@ -166,3 +166,4 @@ export const ShoppingOne = () => {
     );
 };
 
+export default ShoppingOne

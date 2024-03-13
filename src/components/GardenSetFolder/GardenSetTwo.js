@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faThumbsUp, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
-export const GardenSetTwo = () => {
+const GardenSetTwo = () => {
     const cardsData = [
         {
             id: 1,
@@ -201,3 +201,5 @@ export const GardenSetTwo = () => {
         </div>
     );
 };
+
+export default GardenSetTwo

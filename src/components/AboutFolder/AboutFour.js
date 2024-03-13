@@ -4,12 +4,13 @@ import CEO from "../../assets/Images/AboutPageImages/CEO.png"
 import CreativeDirector from "../../assets/Images/AboutPageImages/CreativeDirector.png"
 import Artist from "../../assets/Images/AboutPageImages/Artist.png"
 
-export const AboutFour = () => {
+const AboutFour = () => {
+
     const items = [
-        { name: 'Bernie PATTERSON',Design:'CEO & Founder', imageSrc: CEO },
-        { name: 'OPHELIA VASE',Design:'Creative Director', imageSrc: CreativeDirector },
-        { name: 'CORBIN HOSSAIN',Design:'Artist',imageSrc: Artist},
-        { name: 'SEREN BOWL',Design:'Marketing', imageSrc: Marketing },
+        { name: 'Bernie PATTERSON', Design: 'CEO & Founder', imageSrc: CEO },
+        { name: 'OPHELIA VASE', Design: 'Creative Director', imageSrc: CreativeDirector },
+        { name: 'CORBIN HOSSAIN', Design: 'Artist', imageSrc: Artist },
+        { name: 'SEREN BOWL', Design: 'Marketing', imageSrc: Marketing },
     ];
 
     return (
@@ -27,3 +28,5 @@ export const AboutFour = () => {
         </div>
     );
 };
+
+export default AboutFour

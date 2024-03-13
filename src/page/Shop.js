@@ -1,8 +1,8 @@
-import {ShopOne} from '../components/ShopFolder/ShopOne'
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
+import {ShopOne,NavBarFirst} from '../components'
 
-export const Shop=()=>{
+import Footer from './Footer.js'
+
+const Shop=()=>{
     return(
         <div>
             <NavBarFirst />
@@ -12,3 +12,5 @@ export const Shop=()=>{
 
     )
 }
+
+export default Shop

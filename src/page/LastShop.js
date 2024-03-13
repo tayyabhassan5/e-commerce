@@ -1,8 +1,9 @@
 import React from 'react';
-import { ShoppingOne } from '../components/LastShopping/ShoppingOne';
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
-export const LastShop = () => {
+
+import {NavBarFirst,ShoppingOne} from '../components'
+import Footer from './Footer.js'
+
+const LastShop = () => {
   return (
     <div>
       <NavBarFirst />
@@ -11,3 +12,5 @@ export const LastShop = () => {
     </div>
   );
 };
+
+export default LastShop
