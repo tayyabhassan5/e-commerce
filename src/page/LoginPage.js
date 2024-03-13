@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-export const LoginPage = () => {
+import {useMutation} from "react-query";
+const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -14,18 +14,18 @@ export const LoginPage = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const mutation = useMutation((formData) => axios.post('http://localhost:3000/api/users', formData));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', formData);
+
+      const response=await mutation.mutateAsync(formData);
       const token = response.data.token;
-  
       document.cookie = `token=${token}`;
-  
       console.log('Login Response:', response.data);
   
-      
       if (document.cookie.includes('token')) {
         navigate('/home');
       } else {
@@ -88,3 +88,4 @@ export const LoginPage = () => {
     </div>
   );
 };
+export default LoginPage

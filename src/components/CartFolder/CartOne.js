@@ -18,13 +18,13 @@ const fetchProducts = async (productID) => {
     return response.data;
 }
 
-export const CartOne = () => {
+const CartOne = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { productID } = useParams();
     console.log(productID);
 
-    const {       
+    const {
         data: products,
         error,
         isLoading,
@@ -269,3 +269,5 @@ export const CartOne = () => {
         </div>
     );
 };
+
+export default CartOne

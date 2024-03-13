@@ -1,7 +1,8 @@
-import {SecondLastShoppingOne} from "../components/SecondLastShopping/SecondLastShoppingOne"
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
-export const SecondCart=()=>{
+import {SecondLastShoppingOne,NavBarFirst} from "../components"
+
+import Footer from './Footer.js'
+
+const SecondCart=()=>{
     return(
         <div>
             <NavBarFirst />
@@ -10,3 +11,5 @@ export const SecondCart=()=>{
         </div>
     )
 }
+
+export default SecondCart

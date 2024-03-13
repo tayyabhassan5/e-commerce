@@ -1,4 +1,4 @@
-export const ContactFour = () => {
+const ContactFour = () => {
     return (
         <div className="p-4 lg:mx-80 grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="flex flex-col">
@@ -31,3 +31,4 @@ export const ContactFour = () => {
     </div>
     );
 };
+export default ContactFour

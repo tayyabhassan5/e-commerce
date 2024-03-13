@@ -1,7 +1,7 @@
 import FImage1 from '../../assets/Images/GardenSetImages/VaseCenterImage.png'
 
 
-export const GardenSetOne = () => {
+const GardenSetOne = () => {
     const heading1 = "What’s in a Garden set?";
     const heading2 = "Maecenas sem eros, rutrum vitae risus eget, vulputate aliquam nisi. dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit ";
     
@@ -32,3 +32,5 @@ export const GardenSetOne = () => {
         </div>
     );
 };
+
+export default GardenSetOne

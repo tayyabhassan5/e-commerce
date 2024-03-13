@@ -1,0 +1,5 @@
+export {default as ContactOne} from './ContactOne'
+export {default as ContactTwo} from './ContactTwo'
+export {default as ContactThree} from './ContactThree'
+export {default as ContactFour} from './ContactFour'
+export {default as ContactFive} from './ContactFive'

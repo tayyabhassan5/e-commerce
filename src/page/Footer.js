@@ -1,5 +1,5 @@
 import FImage from '../../src/assets/Images/HomePageImges/logoFooter.png'
-export const Footer = () => {
+const Footer = () => {
     const heading = "Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma";
     const heading1 = "GET STARTED ->";
     const heading2 = ["Mission", "Our team", "Awards", "Testimonial", "Privacy policy"];
@@ -38,3 +38,5 @@ export const Footer = () => {
 
     )
 }
+
+export default Footer

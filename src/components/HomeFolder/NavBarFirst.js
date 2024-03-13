@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faThumbsUp, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-export const NavBarFirst = () => {
+const NavBarFirst = () => {
     const navigate = useNavigate();
     const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -55,3 +55,4 @@ export const NavBarFirst = () => {
         </nav>
     );
 };
+export default NavBarFirst

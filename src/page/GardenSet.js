@@ -1,10 +1,8 @@
-import {GardenSetOne} from '../components/GardenSetFolder/GardenSetOne'
-import {GardenSetTwo} from '../components/GardenSetFolder/GardenSetTwo'
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
+import {GardenSetOne,GardenSetTwo,NavBarFirst} from '../components'
 
+import Footer from './Footer.js'
 
-export const GardenSet=()=>{
+const GardenSet=()=>{
     return(
         <div>
             <NavBarFirst />
@@ -15,3 +13,5 @@ export const GardenSet=()=>{
 
     )
 }
+
+export default GardenSet

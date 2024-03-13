@@ -1,12 +1,8 @@
 import react from 'react'
-import {AboutOne} from '../components/AboutFolder/AboutOne.js'
-import {AboutTwo} from '../components/AboutFolder/AboutTwo.js'
-import {AboutThree} from '../components/AboutFolder/AboutThree.js'
-import {AboutFour} from '../components/AboutFolder/AboutFour.js'
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
+import {AboutOne,AboutFour,AboutThree,AboutTwo,NavBarFirst} from '../components'
+import Footer from './Footer.js'
 
-export const About = () => {
+const About = () => {
     return (
         <div>
             <NavBarFirst />
@@ -19,3 +15,5 @@ export const About = () => {
         </div>
     )
 }
+
+export default About

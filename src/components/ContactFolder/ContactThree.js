@@ -1,4 +1,4 @@
-export const ContactThree = () => {
+const ContactThree = () => {
     const items=[
         {
             id:1,
@@ -37,3 +37,4 @@ export const ContactThree = () => {
         </div>
     )
 }
+export default ContactThree

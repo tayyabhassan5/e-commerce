@@ -1,7 +1,7 @@
 import FImage from "../../assets/Images/HomePageImges/christmas_collection.png"
 import { useNavigate } from "react-router-dom";
 
-export const ChristmasCollection = () => {
+const ChristmasCollection = () => {
     const navigate=useNavigate();
     const heading1 = "UP TO 40% OF OUR CHRISTMAS COLLECTION";
     const heading2 = "Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices.";
@@ -32,3 +32,4 @@ export const ChristmasCollection = () => {
         </div>
     );
 };
+export default ChristmasCollection

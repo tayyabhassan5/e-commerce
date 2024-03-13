@@ -1,6 +1,6 @@
 import react from 'react'
 
-export const AboutOne = () => {
+const AboutOne = () => {
     const heading1 = "ABOUT MOON";
     const heading2 = "Moon's handmade ceramic products have been around since 1650, let's explore our journey"
     return (
@@ -10,3 +10,5 @@ export const AboutOne = () => {
         </div>
     )
 }
+
+export default AboutOne

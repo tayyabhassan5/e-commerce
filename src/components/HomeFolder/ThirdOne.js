@@ -4,7 +4,7 @@ import HomeDecor from "../../assets/Images/HomePageImges/homedecor.png"
 import Holiday from "../../assets/Images/HomePageImges/holiday.png"
 import Collection from "../../assets/Images/HomePageImges/collection.png"
 
-export const ThirdOne = () => {
+const ThirdOne = () => {
     const items = [
         { name: 'TABLEWARE', imageSrc: TableWare },
         { name: 'HOMEDECOR', imageSrc: HomeDecor },
@@ -26,3 +26,4 @@ export const ThirdOne = () => {
         </div>
     );
 };
+export default ThirdOne

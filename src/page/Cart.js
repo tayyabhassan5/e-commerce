@@ -1,9 +1,8 @@
-import {CartOne} from '../components/CartFolder/CartOne'
-import {CartTwo} from '../components/CartFolder/CartTwo'
-import { NavBarFirst } from '../components/HomeFolder/NavBarFirst.js'
-import {Footer} from './Footer.js'
+import {CartOne,CartTwo,NavBarFirst} from '../components'
 
-export const Cart=()=>{
+import Footer from './Footer.js'
+
+const Cart=()=>{
     return(
         <div>
             <NavBarFirst />
@@ -13,3 +12,5 @@ export const Cart=()=>{
         </div>
     )
 }
+
+export default Cart

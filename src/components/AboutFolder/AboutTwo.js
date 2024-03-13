@@ -3,7 +3,7 @@ import FImage1 from "../../assets/Images/AboutPageImages/1910.png"
 import FImage2 from "../../assets/Images/AboutPageImages/1990.png";
 import FImage3 from "../../assets/Images/AboutPageImages/2010.png";
 
-export const AboutTwo = () => {
+const AboutTwo = () => {
     
     const heading1 = "1910";
     const heading2 = "Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices.";
@@ -43,3 +43,5 @@ export const AboutTwo = () => {
         </div>
     );
 };
+
+export default AboutTwo

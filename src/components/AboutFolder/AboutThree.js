@@ -1,6 +1,6 @@
 import FImage1 from "../../assets/Images/AboutPageImages/HowWork.png"
 
-export const AboutThree = () => {
+const AboutThree = () => {
     const heading1 = "HOW WE WORKS";
     const item = [
         {
@@ -58,3 +58,5 @@ export const AboutThree = () => {
         </div>
     );
 };
+
+export default AboutThree

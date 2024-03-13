@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom"
 
 
 
-export const CartTwo = () => {
+const CartTwo = () => {
     const navigate=useNavigate();
     const cardsData = [
         {
@@ -67,3 +67,5 @@ export const CartTwo = () => {
         </div>
     );
 };
+
+export default CartTwo

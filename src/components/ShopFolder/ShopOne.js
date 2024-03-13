@@ -5,18 +5,16 @@ import { addToCart } from '../../redux/count'
 import axios from 'axios';
 import { useQuery } from "react-query";
 
-const fetchProducts=async()=>{
+const fetchProducts = async()=>{
     const response =await axios.get('http://localhost:3000/api/products/getProducts');
     return response.data;
 }
 
-export const ShopOne = () => {
+const ShopOne = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const quantity=1;
-
-    
 
     const handleAddToCart = (product) => {
 
@@ -95,3 +93,4 @@ export const ShopOne = () => {
 
     );
 };
+export default ShopOne
