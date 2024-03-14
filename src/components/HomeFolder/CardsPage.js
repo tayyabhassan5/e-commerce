@@ -16,7 +16,7 @@ const CardsPage = () => {
         };
 
         fetchProducts();
-    }, []);
+    }, []);  
 
     return (
         <div className="flex flex-col font-bold p-8 items-center justify-center">

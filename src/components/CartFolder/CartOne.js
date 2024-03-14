@@ -22,13 +22,18 @@ const CartOne = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { productID } = useParams();
-    console.log(productID);
+
+   
+    const cartItems=useSelector(state=>state.cart.items);
+    console.log("getting products");
+    console.log(cartItems);
+    
 
     const {
         data: products,
         error,
         isLoading,
-    } = useQuery(["specificProductData", productID], ()=>fetchProducts(productID));
+    } = useQuery(["specificProductData", productID], () => fetchProducts(productID));
 
     //const cartItems = useSelector(state => state.cart.items);
     // console.log("Hi, I am before redux");
@@ -38,24 +43,32 @@ const CartOne = () => {
 
     // console.log("Hi, I am after redux");
     const handleAddToCart = (product) => {
+        const checkingItems = cartItems.some(item => item.productHeading === product.productHeading)
+        if (checkingItems) {
+            alert("Product already exists in cart");
+        }
+        else {
 
-        dispatch(addToCart({
-            productID: product._id,
-            productHeading: product.productHeading,
-            productDesc: product.productDesc,
-            productPrice: product.productPrice,
-            productQuantity: quantity,
-            // productReview:product.productReview,
-            // productDetail:product.productDetail,
-            productPrice: product.productPrice,
-            productFilename: product.filename[0],
 
-        }));
-        // console.log(product.filename[0])
-        // console.log(product.productDesc)
-        // console.log(product);
+            dispatch(addToCart({
+                productID: product._id,
+                productHeading: product.productHeading,
+                productDesc: product.productDesc,
+                productPrice: product.productPrice,
+                productQuantity: quantity,
+                // productReview:product.productReview,
+                // productDetail:product.productDetail,
+                productPrice: product.productPrice,
+                productFilename: product.filename[0],
 
-        //navigate('/cart', { state: { productID: product._id, productHeading: product.productHeading } });
+            }));
+            // console.log(product.filename[0])
+            // console.log(product.productDesc)
+            // console.log(product);
+            alert("Product Added to Cart")
+
+            //navigate('/cart', { state: { productID: product._id, productHeading: product.productHeading } });
+        }
     }
 
     const location = useLocation();

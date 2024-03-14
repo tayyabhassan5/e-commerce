@@ -18,34 +18,16 @@ const SecondLastShoppingOne = () => {
   // console.log(productHeading);
   // console.log(quantity);
   // console.log(price);
+  
   const cartItems = useSelector(state => state.cart.items);
   // console.log("Hi, I am before redux");
-  // console.log(cartItems);
+  console.log(cartItems);
 
   // console.log(cartItems[0].productHeading);
   // console.log(cartItems[0].productFilename);
 
   // console.log("Hi, I am after redux");
 
-
-
-  //const [dataFromBackend, setDataFromBackend] = useState([]);
-
-  // useEffect(() => {
-  //     axios.get('http://localhost:3000/api/carts/Handler')
-  //         .then((response) => {
-  //             // Checking response structu
-  //             if (response.data && Array.isArray(response.data.cartDetails)) {
-  //                 console.log(response.data.cartDetails);
-  //                 setDataFromBackend(response.data.cartDetails);
-  //             } else {
-  //                 console.error('Invalid response structure. Expected an object with a cartDetails property containing an array.');
-  //             }
-  //         })
-  //         .catch((error) => {
-  //             console.error('Error fetching data:', error);
-  //         });
-  // }, []);
 
   const calculateSubtotal = (item) => {
     //console.log(dataFromBackend);
@@ -62,29 +44,6 @@ const SecondLastShoppingOne = () => {
 
   };
 
-  // const handleDeleteItem = async (item) => {
-  //     dispatch(deleteItem({ productHeading: item.productHeading }));
-  //     try {
-  //         console.log(item.productHeading);
-  //         const response = await axios.post('http://localhost:3000/api/carts/deleteitem', null, {
-  //             params: {
-  //                 productHeading: item.productHeading,
-  //             },
-  //         });
-
-  //         if (response.status === 200) {
-  //             console.log('Delete successful:', response.data);
-
-  //             setDataFromBackend((prevData) => prevData.filter((prevItem) => prevItem.productHeading !== item.productHeading));
-  //         } else {
-  //             console.error('Failed to delete:', response.statusText);
-  //         }
-
-  //     } catch (error) {
-  //         console.error('Error deleting purchase:', error);
-  //     }
-  // };
-
   return (
     <div className="sm:mx-20">
       <div className="flex items-center space-x-2 mb-10 ">
@@ -92,7 +51,7 @@ const SecondLastShoppingOne = () => {
           Home
         </a>
         <span className="text-gray-500">/</span>
-        <a href="/category" className="hover:underline">
+        <a href="/shop" className="hover:underline">
           Shopping Cart
         </a>
       </div>

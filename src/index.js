@@ -23,7 +23,9 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <QueryClientProvider client={queryClient}>
           <Elements stripe={stripePromise}>
+            
             <App />
+
           </Elements>
 
         </QueryClientProvider>

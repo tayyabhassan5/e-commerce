@@ -1,21 +1,21 @@
 import React from 'react';
-import FImage1 from "../../assets/Images/CheckOutImages/visa.png"
-import FImage2 from "../../assets/Images/CheckOutImages/paypal.png"
-import {useLocation} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 import StripePayment from '../../page/stripePayment';
-import { useState } from 'react';
+
 
 const ShoppingOne = () => {
-    const location = useLocation();
-    const { cartItems,totalSubtotal} = location.state || {};
-    console.log(cartItems);
-    console.log(totalSubtotal);
 
-    const [showStripePayment, setShowStripePayment] = useState(false);
+ 
+    const cartItems = useSelector(state => state.cart.items);
 
-    const handleContinueShopping = () => {
-        setShowStripePayment(true);
-    };
+    const calculateSubtotal = (item) => {
+
+        return item.productPrice * item.productQuantity;
+    
+      };
+    
+      const totalSubtotal = cartItems.reduce((acc, item) => acc + calculateSubtotal(item), 0);
 
     const item = [
         {
@@ -75,8 +75,6 @@ const ShoppingOne = () => {
         }
     ];        
 
-   
-
     return (
         <div className="lg:mx-20 sm:mx-20 overflow-hidden">
             <div>
@@ -103,7 +101,7 @@ const ShoppingOne = () => {
                         ))}
 
                         <button className="p-2"> Move Previous</button>
-                        <StripePayment />
+                        <StripePayment price={totalSubtotal} />
                     </div>
 
                     <div className="sm:ml-20">
@@ -116,7 +114,7 @@ const ShoppingOne = () => {
                         {cartItems.map((item) => (
                             <div key={item.id} className={`flex ${item.heading1 === 'Shipping' || item.heading1 === 'SubTotal' ? 'font-medium mt-2' : ''}`}>
                                 <div>{item.productHeading} </div>
-                                <div className="ml-auto ">{item.subtotal} </div>
+                                <div className="ml-auto ">{calculateSubtotal(item)} </div>
                             </div>
 
                         ))}
