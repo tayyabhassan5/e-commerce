@@ -27,7 +27,7 @@ const LoginPage = () => {
       console.log('Login Response:', response.data);
   
       if (document.cookie.includes('token')) {
-        navigate('/home');
+        navigate('/');
       } else {
         console.error('Token not found in cookies');
       }

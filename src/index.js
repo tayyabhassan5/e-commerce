@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { Provider } from 'react-redux'
 
 import { persistor, store } from './redux/configurestore';
 import { PersistGate } from 'redux-persist/integration/react';
 import { QueryClient, QueryClientProvider } from "react-query";
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const stripePromise = loadStripe('pk_test_51OltXJSByPnkUP3uDB3w7V5yaraD84Klk0QplANiKuLXHddjLjS6N8l0gVx0jM7IPZZ8lxm62uA7jv2gVP0gnt0F00jLydw51o');
+
 
 const queryClient = new QueryClient();
 
@@ -18,7 +22,10 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
+
         </QueryClientProvider>
       </PersistGate>
     </Provider>
